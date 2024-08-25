@@ -9,26 +9,24 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
--- Better window navigation
--- keymap("n", "<C-h>", "<C-w>h", opts)
--- keymap("n", "<C-j>", "<C-w>j", opts)
--- keymap("n", "<C-k>", "<C-w>k", opts)
--- keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>pv", vim.cmd.Ex)
-
--- Move text up and down
--- keymap("n", "<A-j>", ":m .+1<CR>==", opts)
--- keymap("n", "<A-k>", ":m .-2<CR>==", opts)
 
 keymap("n", "J", "mzJ`z")
 keymap("n", "<C-d>", "<C-d>zz")
 keymap("n", "<C-u>", "<C-u>zz")
-keymap("n", "n", "nzzzv")
-keymap("n", "N", "Nzzzv")
+keymap("n", "n", "nzz")
+keymap("n", "N", "Nzz")
+keymap("n", "*", "*zz", opts)
+keymap("n", "#", "#zz", opts)
+keymap("n", "g*", "g*zz", opts)
+keymap("n", "g#", "g#zz", opts)
+keymap({ "n", "v" }, "<S-h>", "^", opts)
+keymap({ "n", "v" }, "<S-l>", "g_", opts)
 
 keymap("n", "Q", "<nop>")
 keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-keymap("n", "<leader>f", vim.lsp.buf.format)
+
+keymap({ "n", "x" }, "<leader>f", function() vim.lsp.buf.format({ async = true }) end, opts)
 
 keymap("n", "<leader>vwm", function()
     require("vim-with-me").StartVimWithMe()
@@ -53,19 +51,21 @@ keymap("n", "<leader><leader>", function()
 end)
 
 -- next greatest remap ever : asbjornHaland
-keymap({"n", "v"}, "<leader>y", [["+y]])
+keymap({ "n", "v" }, "<leader>y", [["+y]])
 keymap("n", "<leader>Y", [["+Y]])
-
-keymap({"n", "v"}, "<leader>d", [["_d]])
+keymap({ "n", "v" }, "<leader>d", [["_d]])
 
 -- Visual --
 keymap("v", "J", ":m '>+1<CR>gv=gv")
 keymap("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Stay in indent mode
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
 -- Insert --
-keymap("i", "<C-c>", "<Esc>")
+keymap("i", "<C-c>", "<Esc>", opts)
 
 -- Visual Block --
 -- greatest remap ever
-keymap("x", "<leader>p", [["_dP]])
-
+keymap("x", "p", [["_dP]])

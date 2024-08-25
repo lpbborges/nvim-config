@@ -23,7 +23,7 @@ autocmd BufWritePost plugins.lua source <afile> | PackerSync
 augroup end
 ]])
 
--- Use a protected call so we don't error out on first use
+-- Use a protected call so we don"t error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
     return
@@ -32,45 +32,44 @@ end
 -- Install your plugins here
 return packer.startup(function(use)
     -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+    use "wbthomason/packer.nvim"
 
     -- Telescope
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.6',
-        -- or                            , branch = '0.1.x',
-        requires = { {'nvim-lua/plenary.nvim'} }
+        "nvim-telescope/telescope.nvim", tag = "0.1.6",
+        -- or                            , branch = "0.1.x",
+        requires = { { "nvim-lua/plenary.nvim" } }
     }
 
     -- Treesitter
-    use ('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
-    use ('nvim-treesitter/playground')
+    use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
+    use("nvim-treesitter/playground")
 
     -- Harpoon
-    use ('ThePrimeagen/harpoon')
+    use("ThePrimeagen/harpoon")
 
     -- Undotree
-    use ('mbbill/undotree')
+    use("mbbill/undotree")
 
     -- Fugitive
-    use ('tpope/vim-fugitive')
+    use("tpope/vim-fugitive")
 
     -- LSP
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v3.x',
-        requires = {
-            -- LSP Support
-            {'williamboman/mason.nvim'},           -- Optional
-            {'williamboman/mason-lspconfig.nvim'}, -- Optional
+    use "neovim/nvim-lspconfig"
 
-            {'neovim/nvim-lspconfig'},             -- Required
+    -- Mason
+    use { "williamboman/mason.nvim" }
+    use { "williamboman/mason-lspconfig.nvim" }
 
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},     -- Required
-            {'hrsh7th/cmp-nvim-lsp'}, -- Required
-            {'L3MON4D3/LuaSnip'},     -- Required
-        }
-    }
+    -- Autocompletion
+    use { "hrsh7th/nvim-cmp" }
+    use { "hrsh7th/cmp-nvim-lsp" }
+    use { "hrsh7th/cmp-buffer" }
+    use { "hrsh7th/cmp-path" }
+    use { "hrsh7th/cmp-cmdline" }
+    use { "L3MON4D3/LuaSnip", run = "make install_jsregexp" }
+    use { "saadparwaiz1/cmp_luasnip" }
+    use { "j-hui/fidget.nvim" }
 
     -- Autopairs
     use {
@@ -80,32 +79,31 @@ return packer.startup(function(use)
 
     -- Comment
     use {
-        'numToStr/Comment.nvim',
+        "numToStr/Comment.nvim",
         config = function()
-            require('Comment').setup()
+            require("Comment").setup()
         end
     }
-    use 'JoosepAlviste/nvim-ts-context-commentstring'
+    use "JoosepAlviste/nvim-ts-context-commentstring"
 
     -- Toggleterm
-    use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+    use { "akinsho/toggleterm.nvim", tag = "*", config = function()
         require("toggleterm").setup()
-    end}
+    end }
 
     -- Colorschemes
-    use 'wojciechkepka/vim-github-dark'
-    use { "catppuccin/nvim", as = "catppuccin" }
+    use "wojciechkepka/vim-github-dark"
     use {
         "folke/tokyonight.nvim",
         lazy = false,
         priority = 1000,
         opts = {},
     }
-    use { 'sonph/onehalf', rtp = 'vim' }
+    use { "sonph/onehalf", rtp = "vim" }
     use "olimorris/onedarkpro.nvim"
 
-    -- Codeium  
-    use 'Exafunction/codeium.vim'
+    -- Codeium
+    -- use "Exafunction/codeium.vim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

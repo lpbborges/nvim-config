@@ -1,12 +1,10 @@
-local status_ok, onedark = pcall(require, "onedarkpro")
-
-if not status_ok then
-    return
-end
-
-onedark.setup {
-    style = "onedark_vivid",
-    transparent = true
+local M = {
+    "olimorris/onedarkpro.nvim",
+    priority = 1000, -- Ensure it loads first
 }
 
-onedark.load()
+function M.config()
+    vim.cmd.colorscheme "onedark"
+end
+
+return M

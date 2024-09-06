@@ -35,6 +35,11 @@ keymap("n", "<leader>svwm", function()
     require("vim-with-me").StopVimWithMe()
 end)
 
+keymap('n', '<left>', '<cmd>echo "Use h to move!!"<CR>', opts)
+keymap('n', '<right>', '<cmd>echo "Use l to move!!"<CR>', opts)
+keymap('n', '<up>', '<cmd>echo "Use k to move!!"<CR>', opts)
+keymap('n', '<down>', '<cmd>echo "Use j to move!!"<CR>', opts)
+
 keymap("n", "<C-k>", "<cmd>cnext<CR>zz")
 keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
 keymap("n", "<leader>k", "<cmd>lnext<CR>zz")

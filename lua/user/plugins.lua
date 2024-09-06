@@ -36,8 +36,9 @@ return packer.startup(function(use)
 
     -- Telescope
     use {
-        "nvim-telescope/telescope.nvim", tag = "0.1.6",
-        -- or                            , branch = "0.1.x",
+        "nvim-telescope/telescope.nvim",
+        -- tag = "0.1.6",
+        branch = "0.1.x",
         requires = { { "nvim-lua/plenary.nvim" } }
     }
 
@@ -69,22 +70,15 @@ return packer.startup(function(use)
     use { "hrsh7th/cmp-cmdline" }
     use { "L3MON4D3/LuaSnip", run = "make install_jsregexp" }
     use { "saadparwaiz1/cmp_luasnip" }
-    use { "j-hui/fidget.nvim" }
+
+    -- None-ls
+    use { "nvimtools/none-ls.nvim" }
 
     -- Autopairs
     use {
         "windwp/nvim-autopairs",
         config = function() require("nvim-autopairs").setup {} end
     }
-
-    -- Comment
-    use {
-        "numToStr/Comment.nvim",
-        config = function()
-            require("Comment").setup()
-        end
-    }
-    use "JoosepAlviste/nvim-ts-context-commentstring"
 
     -- Toggleterm
     use { "akinsho/toggleterm.nvim", tag = "*", config = function()
@@ -101,9 +95,6 @@ return packer.startup(function(use)
     }
     use { "sonph/onehalf", rtp = "vim" }
     use "olimorris/onedarkpro.nvim"
-
-    -- Codeium
-    -- use "Exafunction/codeium.vim"
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
